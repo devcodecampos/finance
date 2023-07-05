@@ -7,7 +7,12 @@ def home(request):
     return render(request, 'home.html')
 
 def gerenciar(request):
-    return render(request, 'gerenciar.html')
+    contas = Conta.objects.all()
+    total_contas = 0
+    for conta in contas:
+        total_conta += conta.valor
+
+    return render(request, 'gerenciar.html', {'contas': contas, 'total_contas': total_contas})
 
 def cadastrar_banco(request):
     apelido = request.POST.get('apelido')
